@@ -110,7 +110,7 @@ public class MainActivityTest {
         // Click on Oppenheimer
         onView(withText("Oppenheimer")).perform(click());
 
-        Thread.sleep(2000); //pause for 2 secs, to let the emulator update the virtual database
+        Thread.sleep(5000); //pause for 2 secs, to let the emulator update the virtual database
 
         // Check that the movie details are displayed correctly
         onView(withId(R.id.edit_title)).check(matches(withText("Oppenheimer")));

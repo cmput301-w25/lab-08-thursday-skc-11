@@ -16,7 +16,6 @@ public class MovieProvider {
         movies = new ArrayList<>();
         movieCollection = firestore.collection("movies");
     }
-
     public interface DataStatus {
         void onDataUpdated();
         void onError(String error);
@@ -77,5 +76,14 @@ public class MovieProvider {
 
     public boolean validMovie(Movie movie, DocumentReference docRef) {
         return movie.getId().equals(docRef.getId()) && !movie.getTitle().isEmpty() && !movie.getGenre().isEmpty() && movie.getYear() > 0;
+    }
+
+    /*
+    DEMO:
+    We also need to add one method to our MovieProvider class for use in our tests.
+    This is because it follows a singleton pattern, but we need to insert a mock for each unit test.
+     */
+    public static void setInstanceForTesting(FirebaseFirestore firestore) {
+        movieProvider = new MovieProvider(firestore);
     }
 }
